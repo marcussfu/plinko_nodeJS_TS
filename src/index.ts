@@ -4,7 +4,7 @@ import { outcomes } from "./outcomes";
 import cors from "cors";
 
 const app = express();
-app.use(cors())
+app.use(cors());
 
 const TOTAL_DROPS = 16;
 
@@ -41,6 +41,10 @@ app.post("/game", (req, res) => {
     }
     
     const multiplier = MULTIPLIERS[outcome];
+    if (outcomes === null) {
+        console.log("outcoms is null");
+        return;
+    }
     const possiblieOutcomes = outcomes[outcome];
     console.log("outputs", possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)]);
     res.send({

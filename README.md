@@ -4,7 +4,7 @@ you can run the project by the following step:
 
 - npm i // install all dependent 
 - npm run build // build project to dist
-- npm run start // run project from dist
+- npm start // run project from dist
 
 ## How to create a node js project with typescript?
 
