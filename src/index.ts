@@ -46,7 +46,7 @@ app.post("/game", (req, res) => {
         return;
     }
     const possiblieOutcomes = outcomes[outcome];
-    console.log("outputs", possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)]);
+    console.log("outputs", outcome, possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)]);
     
     res.send({
         point: possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)],
