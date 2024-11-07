@@ -12,4 +12,5 @@ you can run the project by the following step:
 - npm i --save express cors
 - npx tsc --init
 - adjust tsconfig.json's outDir to './dist'
-- git init // and go to push project to remote
+- git init
+- create .gitignore file, add context to ignore node_modules and dist
