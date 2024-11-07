@@ -40,16 +40,17 @@ app.post("/game", (req, res) => {
         }
     }
     
-    const multiplier = MULTIPLIERS[outcome];
+    // const multiplier = MULTIPLIERS[outcome];
     if (outcomes === null) {
         console.log("outcoms is null");
         return;
     }
     const possiblieOutcomes = outcomes[outcome];
     console.log("outputs", possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)]);
+    
     res.send({
         point: possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)],
-        multiplier,
+        // multiplier,
         pattern
     });
 });

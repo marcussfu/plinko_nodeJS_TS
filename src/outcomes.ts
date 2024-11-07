@@ -15,7 +15,7 @@ fs.readFile(dataPath, 'utf-8', (err, data) => {
     try {
         // Parsing JSON data
         outcomes = JSON.parse(data);
-        console.log(outcomes);
+        console.log(outcomes? 'outcoms is ready':'outcomes not yet!');
     } catch (error) {
         console.error('Error parsing JSON:', error);
     }
