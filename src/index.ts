@@ -2,6 +2,7 @@
 import express from "express";
 import { outcomes } from "./outcomes";
 import cors from "cors";
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
@@ -55,4 +56,4 @@ app.post("/game", (req, res) => {
     });
 });
 
-app.listen(3000)
+app.listen(process.env.PORT, () => console.log('Server running on port', process.env.PORT));

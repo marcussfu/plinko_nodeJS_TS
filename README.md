@@ -9,7 +9,7 @@ you can run the project by the following step:
 ## How to create a node js project with typescript?
 
 - npm i --save-dev typescript @types/express @types/node @types/cors
-- npm i --save express cors
+- npm i --save express cors dotenv
 - npx tsc --init
 - adjust tsconfig.json's outDir to './dist'
 - git init
