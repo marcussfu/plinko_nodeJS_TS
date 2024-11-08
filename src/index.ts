@@ -7,7 +7,8 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 
-const TOTAL_DROPS = 16;
+let possiblieOutcomes:number[] = [];
+let pattern:string[] = []
 
 const MULTIPLIERS: {[ key: number ]: number} = {
     0: 16,
@@ -30,24 +31,37 @@ const MULTIPLIERS: {[ key: number ]: number} = {
 }
 
 app.post("/game", (req, res) => {
-    let outcome = 0;
-    const pattern = []
-    for (let i = 0; i < TOTAL_DROPS; i++) {
-        if (Math.random() > 0.5) {
-            pattern.push("R")
-            outcome++;
-        } else {
-            pattern.push("L")
-        }
+    // receive data
+    if (req.method === 'POST') {
+        let data = '';
+        req.on('data', chunk => {
+            data += chunk.toString();
+        });
+        req.on('end', () => {
+            const jsonParseData = JSON.parse(data);
+            const rowCount = jsonParseData.rowCount;
+
+            let outcome = 0;
+            
+            for (let i = 0; i < rowCount; i++) {
+                if (Math.random() > 0.5) {
+                    pattern.push("R")
+                    outcome++;
+                } else {
+                    pattern.push("L")
+                }
+            }
+            
+            // const multiplier = MULTIPLIERS[outcome];
+            if (outcomes === null) {
+                console.log("outcoms is null");
+                return;
+            }
+            possiblieOutcomes = outcomes[outcome];
+            console.log("outputs: " + " rowCount: " + rowCount + " pinIndex: " + outcome + " startPoint: " + possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)]);
+            res.end('Data received');
+        });
     }
-    
-    // const multiplier = MULTIPLIERS[outcome];
-    if (outcomes === null) {
-        console.log("outcoms is null");
-        return;
-    }
-    const possiblieOutcomes = outcomes[outcome];
-    console.log("outputs", outcome, possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)]);
     
     res.send({
         point: possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)],
