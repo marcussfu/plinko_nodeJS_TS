@@ -7,8 +7,9 @@ require('dotenv').config();
 const app = express();
 app.use(cors());
 
-let possiblieOutcomes:number[] = [];
+let possiblieOutcomes:any = [];
 let pattern:string[] = []
+let startPoint:number = 0;
 
 const MULTIPLIERS: {[ key: number ]: number} = {
     0: 16,
@@ -57,17 +58,19 @@ app.post("/game", (req, res) => {
                 console.log("outcoms is null");
                 return;
             }
-            possiblieOutcomes = outcomes[outcome];
-            console.log("outputs: " + " rowCount: " + rowCount + " pinIndex: " + outcome + " startPoint: " + possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)]);
-            res.end('Data received');
+            possiblieOutcomes = outcomes[rowCount][outcome];
+            startPoint = possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)]
+            console.log("outputs: " + " rowCount: " + rowCount + " pinIndex: " + outcome + " startPoint: " + startPoint);
+            // res.end('Data received');
+            res.send({
+                point: startPoint,
+                // multiplier,
+                pattern
+            });
+
         });
     }
     
-    res.send({
-        point: possiblieOutcomes[Math.floor(Math.random() * possiblieOutcomes.length || 0)],
-        // multiplier,
-        pattern
-    });
 });
 
 app.listen(process.env.PORT, () => console.log('Server running on port', process.env.PORT));
