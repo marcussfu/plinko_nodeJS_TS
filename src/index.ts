@@ -31,6 +31,10 @@ const MULTIPLIERS: {[ key: number ]: number} = {
     16: 16
 }
 
+app.get('/', (req, res) => {
+    res.send('Hello, World!');
+});
+
 app.post("/game", (req, res) => {
     // receive data
     if (req.method === 'POST') {
